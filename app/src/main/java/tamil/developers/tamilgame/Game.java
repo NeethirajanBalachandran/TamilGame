@@ -22,23 +22,20 @@ import android.widget.TextView;
 import tamil.developers.tamilgame.DragDropManager.DropZoneListener;
 
 public class Game extends Activity implements OnTouchListener {
-	
+
 	Convert conn = new Convert();
 	Constants constants = new Constants();
 	Typeface tf;
-	public boolean done = false;
-	Chronometer clock;
-	int time = 0;
 	static SQLiteDatabase myDB1;
-	public static final String TABLE_word = "word_list";
-	public static final String TABLE_Result = "result";
+	public boolean done = false;
+	int time = 0;
 	public String word;
 	public String answer;
 	public int id;
 	public int word_length;
 	public boolean exit = false;
-	int[] buttonIds = {0, R.id.button1,R.id.button2,R.id.button3,R.id.button4,R.id.button5,R.id.button6,R.id.button7,R.id.button8,R.id.button9,R.id.button10};
-	int[] backIds = {0, R.id.button_1,R.id.button_2,R.id.button_3,R.id.button_4,R.id.button_5,R.id.button_6,R.id.button_7,R.id.button_8,R.id.button_9,R.id.button_10};
+	int[] letterIds = {0, R.id.letter1,R.id.letter2,R.id.letter3,R.id.letter4,R.id.letter5,R.id.letter6,R.id.letter7,R.id.letter8,R.id.letter9,R.id.letter10};
+	int[] backIds = {0, R.id.back1,R.id.back2,R.id.back3,R.id.back4,R.id.back5,R.id.back6,R.id.back7,R.id.back8,R.id.back9,R.id.back10};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +56,8 @@ public class Game extends Activity implements OnTouchListener {
 	private void dragAndDrop() {
 		DragDropManager.getInstance().init(this);
 		for (int i = 1; i <= 10; i++){
-			findViewById(buttonIds[i]).setOnTouchListener(this);
-			DragDropManager.getInstance().addDropZone(findViewById(buttonIds[i]), dropZoneListener1);
+			findViewById(letterIds[i]).setOnTouchListener(this);
+			DragDropManager.getInstance().addDropZone(findViewById(letterIds[i]), dropZoneListener1);
 		}
 		DragDropManager.getInstance().addDropZone(findViewById(R.id.layout_total), dropZoneListener1);
 	}
@@ -74,7 +71,7 @@ public class Game extends Activity implements OnTouchListener {
 			startCrono();
 			splitWord();
 			shuffledWord();
-			
+
 			String[] wordSplit = word.split(":");
 			word_length = wordSplit.length;
 			Button btn = findViewById(R.id.submit);
@@ -86,8 +83,8 @@ public class Game extends Activity implements OnTouchListener {
 				btn.setTypeface(tf);
 			}
 			for (int i = 1 ; i <= 10 ; i ++ ){
-				btn = findViewById(buttonIds[i]);
-				if (i < wordSplit.length){
+				btn = findViewById(letterIds[i]);
+				if (i <= wordSplit.length){
 					btn.setText(wordSplit[i-1]);
 					btn.setText(conn.convertText(btn.getText().toString()));
 					btn.setVisibility(View.VISIBLE);
@@ -99,8 +96,8 @@ public class Game extends Activity implements OnTouchListener {
 			}
 		} else {
 			Intent openMainList = new Intent(Game.this, Exit.class);
-    		startActivity(openMainList);
-    		finish();
+			startActivity(openMainList);
+			finish();
 		}
 	}
 	private int createRandom(int max) {
@@ -108,16 +105,16 @@ public class Game extends Activity implements OnTouchListener {
 		return r.nextInt(max) + 1;
 	}
 	private void getWord() {
-		Cursor c = myDB1.rawQuery("SELECT * FROM " + TABLE_Result + " Where flag = 1", null);
+		Cursor c = myDB1.rawQuery("SELECT * FROM " + constants.resultTable + " Where flag = 1", null);
 		int count = c.getCount();
 		c.close();
-		
+
 		TextView txt = findViewById(R.id.count);
 		txt.setTypeface(tf);
 		txt.setText(("200 ,y; " + (count + 1)));
 		txt.setTextColor(Color.BLACK);
-		
-		Cursor c1 = myDB1.rawQuery("SELECT * FROM " + TABLE_word + " Where id = " + (count + 1), null);
+
+		Cursor c1 = myDB1.rawQuery("SELECT * FROM " + constants.wordTable + " Where id = " + (count + 1), null);
 		id = count + 1;
 		if (c1.getCount() > 0 && count < 200)
 		{
@@ -135,26 +132,26 @@ public class Game extends Activity implements OnTouchListener {
 		String[] word2 = word.split("");
 		StringBuilder wordAfterSplit = new StringBuilder();
 		for (int j = 1 ; j < word2.length ; j ++) {
-	    	if (j != (word2.length - 1)) {
-    			if (word2[j + 1].equals(getString(R.string.split1)) || word2[j + 1].equals(getString(R.string.split2)) || 
-	    				word2[j + 1].equals(getString(R.string.split3)) || word2[j + 1].equals(getString(R.string.split4)) || 
-	    				word2[j + 1].equals(getString(R.string.split5)) || word2[j + 1].equals(getString(R.string.split6)) || 
-	    				word2[j + 1].equals(getString(R.string.split7)) || word2[j + 1].equals(getString(R.string.split8)) || 
-	    				word2[j + 1].equals(getString(R.string.split9)) || word2[j + 1].equals(getString(R.string.split10)) || 
-	    				word2[j + 1].equals(getString(R.string.split11)) || word2[j + 1].equals(getString(R.string.split12))) {
+			if (j != (word2.length - 1)) {
+				if (word2[j + 1].equals(getString(R.string.split1)) || word2[j + 1].equals(getString(R.string.split2)) ||
+						word2[j + 1].equals(getString(R.string.split3)) || word2[j + 1].equals(getString(R.string.split4)) ||
+						word2[j + 1].equals(getString(R.string.split5)) || word2[j + 1].equals(getString(R.string.split6)) ||
+						word2[j + 1].equals(getString(R.string.split7)) || word2[j + 1].equals(getString(R.string.split8)) ||
+						word2[j + 1].equals(getString(R.string.split9)) || word2[j + 1].equals(getString(R.string.split10)) ||
+						word2[j + 1].equals(getString(R.string.split11)) || word2[j + 1].equals(getString(R.string.split12))) {
 					wordAfterSplit.append(word2[j]);
 					wordAfterSplit.append(word2[j + 1]);
 					wordAfterSplit.append(":");
-	    			j++;
-	    		} else {
+					j++;
+				} else {
 					wordAfterSplit.append(word2[j]);
 					wordAfterSplit.append(":");
-	    		}
-	    	} else {
+				}
+			} else {
 				wordAfterSplit.append(word2[j]);
 				wordAfterSplit.append(":");
-    		}
-    	}
+			}
+		}
 		word = wordAfterSplit.toString().substring(0,wordAfterSplit.toString().length() - 1);
 		answer = word;
 	}
@@ -180,150 +177,149 @@ public class Game extends Activity implements OnTouchListener {
 		}
 		word = tempWord.toString();
 	}
-    private int get_button_num(int id){
-    	switch (id)
-        {
-	        case R.id.button1: 		return 1;
-	        case R.id.button2:		return 2;
-	        case R.id.button3: 		return 3;
-	        case R.id.button4: 		return 4;
-	        case R.id.button5: 		return 5;
-	        case R.id.button6: 		return 6;
-	        case R.id.button7: 		return 7;
-	        case R.id.button8: 		return 8;
-	        case R.id.button9: 		return 9;
-	        case R.id.button10: 	return 10;
-	        
-	        default:	return 0;
-        }
-    }
-    DropZoneListener dropZoneListener1 = new DropZoneListener()
-    {
-        @Override
-        public void OnDropped(View zone, Object item){
-        	Button t_btn = findViewById(Integer.parseInt(item.toString()));
-        	Button t_btn2 = findViewById(Integer.parseInt(item.toString()));
-        	if (zone.getId() != R.id.layout_total){
-        		Button f_btn = (Button)zone;
-        		t_btn2.setVisibility(View.GONE);
-            	t_btn.setVisibility(View.VISIBLE);
-            	String f_str = f_btn.getText().toString();
-            	String t_str = t_btn.getText().toString();
-            	f_btn.setText(t_str);
-            	t_btn.setText(f_str);
-        	}
-    		t_btn2.setVisibility(View.GONE);
-        	t_btn.setVisibility(View.VISIBLE);
-        	set_button_visibility();
-        }
-        @Override
-        public void OnDragZoneLeft(View zone, Object item){}
-        @Override
-        public void OnDragZoneEntered(View zone, Object item){}
-    };
+	private int get_button_num(int id){
+		switch (id)
+		{
+			case R.id.letter1: 		return 1;
+			case R.id.letter2:		return 2;
+			case R.id.letter3: 		return 3;
+			case R.id.letter4: 		return 4;
+			case R.id.letter5: 		return 5;
+			case R.id.letter6: 		return 6;
+			case R.id.letter7: 		return 7;
+			case R.id.letter8: 		return 8;
+			case R.id.letter9: 		return 9;
+			case R.id.letter10: 	return 10;
+
+			default:	return 0;
+		}
+	}
+	DropZoneListener dropZoneListener1 = new DropZoneListener()
+	{
+		@Override
+		public void OnDropped(View zone, Object item){
+			Button t_btn = findViewById(Integer.parseInt(item.toString()));
+			Button toBackButton = findViewById(backIds[get_button_num(Integer.parseInt(item.toString()))]);
+			if (zone.getId() != R.id.layout_total){
+				Button f_btn = (Button)zone;
+				toBackButton.setVisibility(View.GONE);
+				t_btn.setVisibility(View.VISIBLE);
+				String f_str = f_btn.getText().toString();
+				String t_str = t_btn.getText().toString();
+				f_btn.setText(t_str);
+				t_btn.setText(f_str);
+			}
+			toBackButton.setVisibility(View.GONE);
+			t_btn.setVisibility(View.VISIBLE);
+			set_button_visibility();
+		}
+		@Override
+		public void OnDragZoneLeft(View zone, Object item){}
+		@Override
+		public void OnDragZoneEntered(View zone, Object item){}
+	};
 	@Override
-    public boolean onTouch(View v, MotionEvent event) {
-	    if (!done) {
-    		DragDropManager.getInstance().startDragging(v, v.getId());
-	    	Button btn = findViewById(backIds[get_button_num(v.getId())]);
-	    	btn.setVisibility(View.VISIBLE);
-	    	btn = (Button)v;
-	    	btn.setVisibility(View.GONE);
-	    }
-	    return false;
-    }
-    private void set_button_visibility() {
+	public boolean onTouch(View v, MotionEvent event) {
+		if (!done) {
+			DragDropManager.getInstance().startDragging(v, v.getId());
+			Button btn = findViewById(backIds[get_button_num(v.getId())]);
+			btn.setVisibility(View.VISIBLE);
+			btn = (Button)v;
+			btn.setVisibility(View.GONE);
+		}
+		return false;
+	}
+	private void set_button_visibility() {
 		for(int i = 1 ; i <= 10 ; i ++){
-			Button btn = findViewById(buttonIds[i]);
-			if (i < word_length) btn.setVisibility(View.VISIBLE);
+			Button btn = findViewById(letterIds[i]);
+			if (i <= word_length) btn.setVisibility(View.VISIBLE);
 			else btn.setVisibility(View.GONE);
 			Button btn1 = findViewById(backIds[i]);
 			btn1.setVisibility(View.GONE);
 		}
 	}
-    public void show(View v){
-    	set_button_visibility();
-    }
+	public void show(View v){
+		set_button_visibility();
+	}
 	public void submit(View v) {
-    	if (!done) {
+		if (!done) {
 			StringBuilder Result = new StringBuilder();
-	    	Button btn;
-	    	String check_answer = answer;
-	    	String[] answerSplit = check_answer.split(":");
-	    	for (int j = 0 ; j < answerSplit.length ; j ++){
-	    		if (j == 0) check_answer = conn.convertText(answerSplit[j]);
-	    		else 		check_answer = check_answer + "" + conn.convertText(answerSplit[j]);
-	    	}
-	    	for (int i = 0 ; i < 10 ; i ++ ){
-				if (i < answerSplit.length){
-					Result.append(((Button)findViewById(buttonIds[i])).getText());
-	    		}
+			Button btn;
+			String check_answer = answer;
+			String[] answerSplit = check_answer.split(":");
+			for (int j = 0 ; j < answerSplit.length ; j ++){
+				if (j == 0) check_answer = conn.convertText(answerSplit[j]);
+				else 		check_answer = check_answer + "" + conn.convertText(answerSplit[j]);
 			}
-	    	btn = (Button)v;
-	    	if (Result.toString().equals(check_answer)){
-	    		//Toast.makeText(getBaseContext(), "Correct", Toast.LENGTH_SHORT).show();
-	    		btn.setTextColor(Color.WHITE);
-	    		btn.setText(R.string.next);
-	    		done = true;
-	    		btn_go_green();
-	    		stopCrono();
-	    		enter_result(true);
-	    	} else {
-	    		btn.setTextColor(Color.RED);
-	    		done = false;
-	    		enter_result(false);
-	    	}
-    	} else {
-    		startWord();
-    	}
-    }
-    private void btn_go_white() {
-    	Button btn;
-    	for (int i = 0 ; i < 10 ; i ++ ){
-    		btn = findViewById(buttonIds[i]);
+			for (int i = 1 ; i <= 10 ; i ++ ){
+				if (i <= answerSplit.length){
+					Result.append(((Button)findViewById(letterIds[i])).getText());
+				}
+			}
+			btn = (Button)v;
+			if (Result.toString().equals(check_answer)){
+				//Toast.makeText(getBaseContext(), "Correct", Toast.LENGTH_SHORT).show();
+				btn.setTextColor(Color.WHITE);
+				btn.setText(R.string.next);
+				done = true;
+				btn_go_green();
+				stopCrono();
+				enter_result(true);
+			} else {
+				btn.setTextColor(Color.RED);
+				done = false;
+				enter_result(false);
+			}
+		} else {
+			startWord();
+		}
+	}
+	private void btn_go_white() {
+		for (int i = 1 ; i <= 10 ; i ++ ){
+			Button btn = findViewById(letterIds[i]);
 			btn.setTextColor(Color.WHITE);
 		}
 	}
-    private void btn_go_green() {
-    	Button btn;
-    	for (int i = 0 ; i < 10 ; i ++ ){
-    		btn = findViewById(buttonIds[i]);
+	private void btn_go_green() {
+		for (int i = 1 ; i <= 10 ; i ++ ){
+			Button btn = findViewById(letterIds[i]);
 			btn.setTextColor(Color.GREEN);
 		}
 	}
 	private void enter_result(boolean set_flag) {
-    	Cursor c = myDB1.rawQuery("SELECT * FROM " + TABLE_Result + " where id = " + id, null);
+		Cursor c = myDB1.rawQuery("SELECT * FROM " + constants.resultTable + " where id = " + id, null);
 		if (c.getCount() > 0) {
 			c.moveToFirst();
 			int Column_trial = c.getColumnIndex("trial");
 			int trial = c.getInt(Column_trial);
 			int Column_time = c.getColumnIndex("time");
 			int t_time = c.getInt(Column_time);
-			myDB1.execSQL("UPDATE " + TABLE_Result + " SET trial = " + (trial + 1) + " where id = " + id );
-			myDB1.execSQL("UPDATE " + TABLE_Result + " SET time = " + (t_time + time) + " where id = " + id );
-			if (set_flag)	myDB1.execSQL("UPDATE " + TABLE_Result + " SET flag = 1 where id = " + id );
+			myDB1.execSQL("UPDATE " + constants.resultTable + " SET trial = " + (trial + 1) + " where id = " + id );
+			myDB1.execSQL("UPDATE " + constants.resultTable + " SET time = " + (t_time + time) + " where id = " + id );
+			if (set_flag)	myDB1.execSQL("UPDATE " + constants.resultTable + " SET flag = 1 where id = " + id );
 		} else {
-			if (set_flag)	myDB1.execSQL("INSERT Into " + TABLE_Result + " (id, time, trial, flag) Values (" + id + "," + time + ",1,1)");
-			else			myDB1.execSQL("INSERT Into " + TABLE_Result + " (id, time, trial, flag) Values (" + id + "," + time + ",1,0)");
+			if (set_flag)	myDB1.execSQL("INSERT Into " + constants.resultTable + " (id, time, trial, flag) Values (" + id + "," + time + ",1,1)");
+			else			myDB1.execSQL("INSERT Into " + constants.resultTable + " (id, time, trial, flag) Values (" + id + "," + time + ",1,0)");
 		}
 		c.close();
 	}
 	private void startCrono() {
-		this.clock = findViewById(R.id.cronotime);
-		clock.setBase(SystemClock.elapsedRealtime());
+		Chronometer clock = findViewById(R.id.chronometerTime);
+		//clock.setBase(SystemClock.elapsedRealtime());
 		clock.start();
 		clock.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener(){
-		     @Override
-		     public void onChronometerTick(Chronometer chronometer) {
-	    		 TextView txt = findViewById(R.id.time);
-	    		 txt.setText(time);
-	    		 txt.setTypeface(tf);
-	    		 txt.setTextColor(Color.BLACK);
-	    		 time = time + 1;
-		     }
+			@Override
+			public void onChronometerTick(Chronometer chronometer) {
+				TextView txt = findViewById(R.id.time);
+				txt.setText((time + ""));
+				txt.setTypeface(tf);
+				txt.setTextColor(Color.BLACK);
+				time = time + 1;
+			}
 		});
 	}
 	private void stopCrono() {
+		Chronometer clock = findViewById(R.id.chronometerTime);
 		clock.stop();
 	}
 	@Override
@@ -339,9 +335,9 @@ public class Game extends Activity implements OnTouchListener {
 		super.onDestroy();
 	}
 	@Override
-    public void onBackPressed(){
+	public void onBackPressed(){
 		MenuPage();
-    }
+	}
 	private void MenuPage() {
 		startActivity(new Intent(Game.this, Menu.class));
 		finish();
