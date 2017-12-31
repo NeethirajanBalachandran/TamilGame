@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">வார்த்தை விளையாட்டு</string>
+    <string name="submit">rup ghu;</string>
+    <string name="next">mLj;J</string>
+    <string name="btn_play">வார்த்தை விளையாட்டு</string>
+    <string name="btn_lb">முடிவுற்ற பட்டியல்</string>
+    <string name="btn_paidversion">வார்த்தை விளையாட்டு பணப்பதிப்பு</string>
+    <string name="btn_version2">வார்த்தை விளையாட்டு 2</string>
+    <string name="btn_about">மேம்பாட்டாளர் பற்றி</string>
+    <string name="exitmsg">உங்கள் 200 வார்த்தைகள் கொண்டிருக்கும் பயன்பாடு நிறைவடைந்தது. மேலும் 2000 வார்த்தைகள் விளையாட இங்கே சொடுக்கவும்</string>
+    <string name="tryagain">மீண்டும் முயற்சி செய்ய இங்கே சொடுக்கவும்</string>
+    <string name="finish_zero_msg">நீங்கள் எந்த ஒரு வார்த்தையையும் முடிக்கவில்லை</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_coming_soon">ComingSoon</string>
+    <string name="btn_others">மற்றவை</string>
+    <string name="split1">்</string>
+    <string name="split2">ா</string>
+    <string name="split3">ி</string>
+    <string name="split4">ீ</string>
+    <string name="split5">ு</string>
+    <string name="split6">ூ</string>
+    <string name="split7">ெ</string>
+    <string name="split8">ே</string>
+    <string name="split9">ை</string>
+    <string name="split10">ொ</string>
+    <string name="split11">ோ</string>
+    <string name="split12">ௌ</string>
+    <string name="banner_ad_unit_id_test">ca-app-pub-1233786554019860/4495932235</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_ad_unit_id_test">ca-app-pub-1233786554019860/2912255032</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+</resources>

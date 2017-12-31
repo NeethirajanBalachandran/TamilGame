@@ -1,0 +1,259 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ 	xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_total"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back" >
+	<com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        ads:adUnitId="@string/banner_ad_unit_id" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp" >
+
+            <Button
+                android:id="@+id/button1"
+                style="@style/btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button_1"
+                style="@style/btn2"
+                android:onClick="show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button2"
+                style="@style/btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button_2"
+                style="@style/btn2"
+                android:onClick="show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button3"
+                style="@style/btn1"
+                android:clickable="false"
+                android:focusable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button_3"
+                style="@style/btn2"
+                android:onClick="show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button4"
+                style="@style/btn1"
+                android:clickable="false"
+                android:focusable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button_4"
+                style="@style/btn2"
+                android:onClick="show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button5"
+                style="@style/btn1"
+                android:clickable="false"
+                android:focusable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button_5"
+                style="@style/btn2"
+                android:onClick="show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button6"
+                style="@style/btn1"
+                android:clickable="false"
+                android:focusable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button_6"
+                style="@style/btn2"
+                android:onClick="show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button7"
+                style="@style/btn1"
+                android:clickable="false"
+                android:focusable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button_7"
+                style="@style/btn2"
+                android:onClick="show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button8"
+                style="@style/btn1"
+                android:clickable="false"
+                android:focusable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button_8"
+                style="@style/btn2"
+                android:onClick="show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button9"
+                style="@style/btn1"
+                android:clickable="false"
+                android:focusable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button_9"
+                style="@style/btn2"
+                android:onClick="show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button10"
+                style="@style/btn1"
+                android:clickable="false"
+                android:focusable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="45dp" />
+
+            <Button
+                android:id="@+id/button_10"
+                style="@style/btn2"
+                android:onClick="show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="45dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/submit"
+                style="@style/btnSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="submit"
+                android:text="@string/submit" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Chronometer
+        android:id="@+id/cronotime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>
