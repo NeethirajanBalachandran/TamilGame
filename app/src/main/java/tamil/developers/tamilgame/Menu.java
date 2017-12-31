@@ -10,8 +10,14 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 public class Menu extends Activity {
-	
+
+	private AdView mAdView;
 	Convert conn = new Convert();
 	Constants constants = new Constants();
 	Typeface tf;
@@ -40,9 +46,16 @@ public class Menu extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu);
-		tf = Typeface.createFromAsset(getAssets(),"fonts/vellore.ttf");
-		database_connect();
+		setAds();
+		tf = Typeface.createFromAsset(getAssets(),constants.fontPath);
+		connectDatabase();
 		set_buttons();
+	}
+	private void setAds(){
+		MobileAds.initialize(this, "ca-app-pub-1233786554019860~9205333431");
+		mAdView = findViewById(R.id.adView);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		mAdView.loadAd(adRequest);
 	}
 	private void set_buttons() {
 		set_btn(R.id.button1);
@@ -72,7 +85,7 @@ public class Menu extends Activity {
 			}
 		});
 	}
-	private void database_connect() {
+	private void connectDatabase() {
 		String dbName  = this.getFilesDir().getPath() + constants.dbName;
 	    myDB1 = openOrCreateDatabase(dbName , Context.MODE_PRIVATE, null);
 	    myDB1.setVersion(constants.dbVersion);

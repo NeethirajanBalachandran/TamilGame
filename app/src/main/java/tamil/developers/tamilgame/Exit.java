@@ -64,8 +64,7 @@ public class Exit extends Activity {
 	}
 	@Override
     public void onBackPressed(){
-		Intent openMainList = new Intent(Exit.this, Menu.class);
-		startActivity(openMainList);
+		startActivity(new Intent(Exit.this, Menu.class));
 		finish();
     }
 }

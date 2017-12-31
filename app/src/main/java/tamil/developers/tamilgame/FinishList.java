@@ -113,8 +113,7 @@ public class FinishList extends Activity {
 	}
 	@Override
     public void onBackPressed(){
-		Intent openMainList = new Intent(FinishList.this, Menu.class);
-		startActivity(openMainList);
+		startActivity(new Intent(FinishList.this, Menu.class));
 		finish();
     }
 }

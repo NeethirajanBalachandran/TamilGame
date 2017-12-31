@@ -12,7 +12,6 @@
     <string name="finish_zero_msg">நீங்கள் எந்த ஒரு வார்த்தையையும் முடிக்கவில்லை</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_coming_soon">ComingSoon</string>
     <string name="btn_others">மற்றவை</string>
     <string name="split1">்</string>
     <string name="split2">ா</string>
@@ -26,8 +25,9 @@
     <string name="split10">ொ</string>
     <string name="split11">ோ</string>
     <string name="split12">ௌ</string>
+    <string name="production">test</string>
     <string name="banner_ad_unit_id_test">ca-app-pub-1233786554019860/4495932235</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="interstitial_ad_unit_id_test">ca-app-pub-1233786554019860/2912255032</string>
-    <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-1233786554019860/2912255032</string>
+    <string name="interstitial_ad_unit_id_test">ca-app-pub-3940256099942544/1033173712</string>
 </resources>

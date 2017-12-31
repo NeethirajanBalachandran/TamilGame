@@ -46,8 +46,7 @@ public class ComingSoon extends Activity {
 	}
 	@Override
 	public void onBackPressed() {
-		Intent openMainList = new Intent(ComingSoon.this, Menu.class);
-		startActivity(openMainList);
+		startActivity(new Intent(ComingSoon.this, Menu.class));
 		finish();
 	}
 }
