@@ -1,6 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_total"
+    android:clickable="false"
+    android:focusable="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back" >
@@ -39,8 +41,7 @@
             <Button
                 android:id="@+id/back1"
                 style="@style/btn2"
-                android:clickable="false"
-                android:focusable="false"
+                android:onClick="show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
@@ -61,8 +62,7 @@
             <Button
                 android:id="@+id/back2"
                 style="@style/btn2"
-                android:clickable="false"
-                android:focusable="false"
+                android:onClick="show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
@@ -83,8 +83,7 @@
             <Button
                 android:id="@+id/back3"
                 style="@style/btn2"
-                android:clickable="false"
-                android:focusable="false"
+                android:onClick="show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
@@ -105,8 +104,7 @@
             <Button
                 android:id="@+id/back4"
                 style="@style/btn2"
-                android:clickable="false"
-                android:focusable="false"
+                android:onClick="show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
@@ -127,8 +125,7 @@
             <Button
                 android:id="@+id/back5"
                 style="@style/btn2"
-                android:clickable="false"
-                android:focusable="false"
+                android:onClick="show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
@@ -149,8 +146,7 @@
             <Button
                 android:id="@+id/back6"
                 style="@style/btn2"
-                android:clickable="false"
-                android:focusable="false"
+                android:onClick="show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
@@ -171,8 +167,7 @@
             <Button
                 android:id="@+id/back7"
                 style="@style/btn2"
-                android:clickable="false"
-                android:focusable="false"
+                android:onClick="show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
@@ -193,8 +188,7 @@
             <Button
                 android:id="@+id/back8"
                 style="@style/btn2"
-                android:clickable="false"
-                android:focusable="false"
+                android:onClick="show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
@@ -215,8 +209,7 @@
             <Button
                 android:id="@+id/back9"
                 style="@style/btn2"
-                android:clickable="false"
-                android:focusable="false"
+                android:onClick="show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
@@ -235,8 +228,7 @@
             <Button
                 android:id="@+id/back10"
                 style="@style/btn2"
-                android:clickable="false"
-                android:focusable="false"
+                android:onClick="show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="45dp" />

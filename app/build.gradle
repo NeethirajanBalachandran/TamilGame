@@ -6,8 +6,8 @@ android {
         applicationId "tamil.developers.tamilgame"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 12
-        versionName "7.0"
+        versionCode 14
+        versionName "9.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

@@ -4,7 +4,6 @@ import java.util.Locale;
 import java.util.Random;
 
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -19,10 +18,17 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+
 import tamil.developers.tamilgame.DragDropManager.DropZoneListener;
 
 public class Game extends Activity implements OnTouchListener {
 
+	private InterstitialAd mInterstitialAd;
 	Convert conn = new Convert();
 	Constants constants = new Constants();
 	Typeface tf;
@@ -36,16 +42,44 @@ public class Game extends Activity implements OnTouchListener {
 	public boolean exit = false;
 	int[] letterIds = {0, R.id.letter1,R.id.letter2,R.id.letter3,R.id.letter4,R.id.letter5,R.id.letter6,R.id.letter7,R.id.letter8,R.id.letter9,R.id.letter10};
 	int[] backIds = {0, R.id.back1,R.id.back2,R.id.back3,R.id.back4,R.id.back5,R.id.back6,R.id.back7,R.id.back8,R.id.back9,R.id.back10};
+	int countForAd = 0;
+	boolean backPress = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
-
+		setAds();
 		tf = Typeface.createFromAsset(getAssets(),constants.fontPath);
 		connectDatabase();
 		dragAndDrop();
 		startWord();
+	}
+	private void setAds(){
+		MobileAds.initialize(this, "ca-app-pub-1233786554019860~9205333431");
+		AdView mAdView = findViewById(R.id.adView);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		mAdView.loadAd(adRequest);
+		mInterstitialAd = new InterstitialAd(this);
+		if (getResources().getString(R.string.production).equals("prod")){
+			mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstitial_ad_unit_id));
+		} else {
+			mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstitial_ad_unit_id_test));
+		}
+		mInterstitialAd.loadAd(new AdRequest.Builder().build());
+		mInterstitialAd.setAdListener(new AdListener() {
+			@Override
+			public void onAdClosed() {
+				// Load the next interstitial.
+				if (backPress){
+					MenuPage();
+				} else {
+					mInterstitialAd.loadAd(new AdRequest.Builder().build());
+					startWord();
+				}
+			}
+
+		});
 	}
 	private void connectDatabase() {
 		String dbName = this.getFilesDir().getPath() + constants.dbName;
@@ -163,9 +197,7 @@ public class Game extends Activity implements OnTouchListener {
 		for (int i = 0 ; i < l ; i++){
 			int rn = createRandom( l - i);
 			lm[i] = ln[rn-1];
-			for (int j = rn ; j < ln.length ; j ++){
-				ln[j-1] = ln[j];
-			}
+			System.arraycopy(ln,rn,ln, rn-1 , ln.length-rn);
 		}
 		StringBuilder tempWord = new StringBuilder();
 		for (int i = 0 ; i < l ; i++){
@@ -208,6 +240,8 @@ public class Game extends Activity implements OnTouchListener {
 				String t_str = t_btn.getText().toString();
 				f_btn.setText(t_str);
 				t_btn.setText(f_str);
+			} else {
+				set_button_visibility();
 			}
 			toBackButton.setVisibility(View.GONE);
 			t_btn.setVisibility(View.VISIBLE);
@@ -271,7 +305,17 @@ public class Game extends Activity implements OnTouchListener {
 				enter_result(false);
 			}
 		} else {
-			startWord();
+			if (countForAd < 4){
+				countForAd++;
+				startWord();
+			} else {
+				if (mInterstitialAd.isLoaded()) {
+					mInterstitialAd.show();
+					countForAd = 0;
+				} else {
+					startWord();
+				}
+			}
 		}
 	}
 	private void btn_go_white() {
@@ -305,7 +349,6 @@ public class Game extends Activity implements OnTouchListener {
 	}
 	private void startCrono() {
 		Chronometer clock = findViewById(R.id.chronometerTime);
-		//clock.setBase(SystemClock.elapsedRealtime());
 		clock.start();
 		clock.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener(){
 			@Override
@@ -336,7 +379,12 @@ public class Game extends Activity implements OnTouchListener {
 	}
 	@Override
 	public void onBackPressed(){
-		MenuPage();
+		if (mInterstitialAd.isLoaded()) {
+			mInterstitialAd.show();
+			backPress = true;
+		} else {
+			MenuPage();
+		}
 	}
 	private void MenuPage() {
 		startActivity(new Intent(Game.this, Menu.class));
